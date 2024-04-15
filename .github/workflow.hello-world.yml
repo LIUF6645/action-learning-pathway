@@ -4,6 +4,6 @@ jobs:
   hello-world-jobs:
     runs-on: ubuntu-latest
     steps:
-      -name: Check out repositorycode
+      - name: Check out repositorycode
       users: actions/checkout@v3
-      -runs: echo "$(cat hello world.txt)"
+      - runs: echo "$(cat hello world.txt)"
