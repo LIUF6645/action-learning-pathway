@@ -1,13 +1,13 @@
-name : hello-world
+name : built-test-deploy
 on: push
 jobs:
   built:
     runs-on: ubuntu-latest
     steps:
      - name: checkout repo
-       uses: actions/checkout@v4.1.2
+       uses: actions/checkout@v3
      - name: use node.js
-       uses: action/setup-node@v4.1.2
+       uses: action/setup-node@v3
        with:
          node-version: '18.x'
      - run: npm install
