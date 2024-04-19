@@ -1,6 +1,18 @@
 name : built-test-deploy
-on: push
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: "Node-version"
+        required: true
+        type: string
 jobs:
+
+  my-job:
+    uses: organization/repo/.github/workflows/built-test-deploy@main
+    with:
+      node-version: '18.x'
+        
   built:
     runs-on: ubuntu-latest
     steps:
@@ -12,6 +24,7 @@ jobs:
          node-version: '18.x'
      - run: npm install
      - run: npm run build
+     
   test:
     needs: built
     runs-on: ubuntu-latest
