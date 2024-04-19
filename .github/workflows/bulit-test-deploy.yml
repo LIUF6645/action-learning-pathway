@@ -56,9 +56,9 @@ jobs:
           static-site-generator: next
 
       - run: npm install
-      - run: npmrun build
+      - run: npm run build
 
-      - name: upload artifacts
+      - name: upload
         uses: actions/upload-pages-artifact@v1
         with:
           path: './out'
