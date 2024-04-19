@@ -59,7 +59,7 @@ jobs:
       - run: npmrun build
 
       - name: upload
-        uses: actions/upload@v1
+        uses: actions/upload-pages-artifact@v1
         with:
           path: './out'
 
