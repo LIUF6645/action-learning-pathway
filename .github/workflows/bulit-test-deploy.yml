@@ -50,7 +50,7 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: config
+      - name: configure github pages
         uses: actions/congigure-pages@v3
         with:
           static-site-generator: next
