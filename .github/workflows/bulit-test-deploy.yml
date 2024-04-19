@@ -24,3 +24,45 @@ jobs:
          node-version: '18.x'
      - run: npm install
      - run: npm test
+     
+  deploy:
+    needs: test
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: config
+        uses: actions/congigure-pages@v3
+        with:
+          static-site-generator: next
+
+      - run: npm install
+      - run: npmrun build
+
+      - name: upload
+        uses: actions/upload@v1
+        with:
+          path: './out'
+
+      - name: deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
